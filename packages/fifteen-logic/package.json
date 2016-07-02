@@ -1,0 +1,24 @@
+{
+  "name": "fifteen-logic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sappharx/fifteen/tree/master/packages/fifteen-logic"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^3.13.0",
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "redux": "^3.5.2"
+  }
+}
