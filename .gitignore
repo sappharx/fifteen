@@ -1,5 +1,8 @@
 node_modules/
 dist/
+.alm/
+
+*.map
+
 .DS_Store
 npm-debug.log
-*.map
