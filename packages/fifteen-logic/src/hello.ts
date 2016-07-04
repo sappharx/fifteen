@@ -1,3 +1,3 @@
-import createGrid from './grid-factory'
+import createGrid from './reducerFactory/create-grid'
 
 console.log(createGrid(4))
