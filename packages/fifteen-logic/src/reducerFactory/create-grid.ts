@@ -27,11 +27,11 @@ function createRandomizedArray(gridSize: number): Array<number> {
     randomArray = randomArray.concat(value)
   }
 
-  return randomArray
-}
+  if (gridSize % 2 === 0) {
+    randomArray = ensureNonPathologicalArray(randomArray)
+  }
 
-function getRandomIntInclusive(min: number, max: number): number {
-  return min + Math.floor(Math.random() * (max - min + 1));
+  return randomArray
 }
 
 function createBasicArray(size: number): Array<number> {
@@ -43,4 +43,18 @@ function createBasicArray(size: number): Array<number> {
   }
 
   return array
+}
+
+function getRandomIntInclusive(min: number, max: number): number {
+  return min + Math.floor(Math.random() * (max - min + 1));
+}
+
+function ensureNonPathologicalArray(array: Array<number>): Array<number> {
+  for (let i = 0, j = array.length - 1; j > 0; ++i, --j) {
+    if (array[i] !== j) {
+      return array
+    }
+  }
+
+  return createRandomizedArray(Math.sqrt(array.length))
 }
