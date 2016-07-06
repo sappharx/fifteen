@@ -1,15 +1,7 @@
 {
   "name": "fifteen-logic",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc -w",
-    "lint": "tslint src/**/*.ts",
-    "test": "ava dist/*.js --watch",
-    "test:once": "tsc && ava dist/*.js"
-  },
+  "description": "core logic for fifteen",
   "repository": {
     "type": "git",
     "url": "https://github.com/sappharx/fifteen/tree/master/packages/fifteen-logic"
@@ -17,11 +9,13 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.15.2",
-    "tslint": "^3.13.0",
-    "typescript": "^1.8.10"
+    "ava": "0.15.2",
+    "jake": "8.0.12",
+    "shelljs": "0.7.0",
+    "tslint": "3.13.0",
+    "typescript": "1.8.10"
   },
   "dependencies": {
-    "redux": "^3.5.2"
+    "redux": "3.5.2"
   }
 }
