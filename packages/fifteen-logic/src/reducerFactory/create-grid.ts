@@ -1,19 +1,6 @@
-type Grid = Array<Array<number>>
-
 // QUESTION: do we want '0' to always be in the bottom right corner??
-export default function createGrid(gridSize: number): Grid {
-  let randomArray: Array<number> = createRandomizedArray(gridSize)
-  let gridArray: Grid = []
-
-  for (let i: number = 0; i < gridSize; ++i) {
-    const start: number = i * gridSize
-    const end: number = (i + 1) * gridSize
-    const array: Array<number> = randomArray.slice(start, end)
-
-    gridArray = gridArray.concat([array])
-  }
-
-  return gridArray
+export default function createGrid(gridSize: number): Array<number> {
+  return createRandomizedArray(gridSize)
 }
 
 function createRandomizedArray(gridSize: number): Array<number> {
@@ -27,6 +14,8 @@ function createRandomizedArray(gridSize: number): Array<number> {
     randomArray = randomArray.concat(value)
   }
 
+  randomArray.push(0)
+
   return (gridSize % 2 === 0 && isPathologicalArray(randomArray))
     ? createRandomizedArray(gridSize)
     : randomArray
@@ -36,7 +25,7 @@ function createBasicArray(size: number): Array<number> {
   let numbersRemaining: number = size * size
   let array: Array<number> = []
 
-  while (numbersRemaining > 0) {
+  while (numbersRemaining > 1) {
     array = array.concat(--numbersRemaining)
   }
 
@@ -56,3 +45,12 @@ function isPathologicalArray(array: Array<number>): boolean {
 
   return true
 }
+
+// FOR REFERENCE: split array into an array of arrays
+// let gridArray: Grid = []
+// for (let i: number = 0; i < gridSize; ++i) {
+//   const start: number = i * gridSize
+//   const end: number = (i + 1) * gridSize
+//   const array: Array<number> = randomArray.slice(start, end)
+//   gridArray = gridArray.concat([array])
+// }

@@ -11,11 +11,18 @@
   "devDependencies": {
     "ava": "0.15.2",
     "jake": "8.0.12",
+    "nyc": "^6.6.1",
     "shelljs": "0.7.0",
     "tslint": "3.13.0",
     "typescript": "1.8.10"
   },
   "dependencies": {
     "redux": "3.5.2"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.test.js",
+      "bin"
+    ]
   }
 }

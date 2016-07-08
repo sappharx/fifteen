@@ -1,8 +1,8 @@
 import createGrid from './create-grid'
+import { ActionTypes } from './ActionTypes'
 import { IAction } from './IAction'
 
-type Grid = Array<Array<number>>
-type Reducer = (state: Grid, action?: IAction) => Grid
+type Reducer = (state: Array<number>, action?: IAction) => Array<number>
 
 const MINIMUM_GRID_SIZE: number = 3
 const MAXIMUM_GRID_SIZE: number = 9
@@ -16,10 +16,12 @@ export default function reducerFactory(gridSize: number): Reducer {
     throw `requested gridSize is above the maximum ${MAXIMUM_GRID_SIZE}`
   }
 
-  const initialState: Grid = createGrid(gridSize)
+  const initialState: Array<number> = createGrid(gridSize)
 
-  return (state: Grid = initialState, action?: IAction): Grid => {
+  return (state: Array<number> = initialState, action?: IAction): Array<number> => {
     switch (action.type) {
+      case ActionTypes.MoveTile:
+        return state
       default:
         return state
     }

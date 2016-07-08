@@ -24,8 +24,16 @@
     console.log('\n\ntslint complete')
   })
 
+  desc('Run NYC')
+  task('coverage', ['build'], function() {
+    exec('node_modules/.bin/nyc node_modules/.bin/ava')
+    // exec('node_modules/.bin/nyc dist/**/*.js')
+    
+    console.log('\n\ncoverage complete')
+  })
+
   desc('Watch *.ts files for changes then run tests')
-  watchTask(['build', 'test'], function () {
+  watchTask(['build', 'coverage'], function () {
     this.watchFiles.include([
       'src/**/*.ts'
     ])
