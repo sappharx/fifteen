@@ -17,6 +17,7 @@
     "typescript": "1.8.10"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "redux": "3.5.2"
   },
   "nyc": {
