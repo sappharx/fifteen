@@ -12,12 +12,12 @@ function createRandomizedArray(gridSize: number): Immutable.List<number> {
   while (availableNumbers.size > 0) {
     const index: number = getRandomIntInclusive(0, availableNumbers.size - 1)
     const value: number = availableNumbers.get(index)
-    availableNumbers.delete(index)
+    availableNumbers = availableNumbers.delete(index)
 
     randomArray = randomArray.push(value)
   }
 
-  randomArray.push(0)
+  randomArray = randomArray.push(0)
 
   return (gridSize % 2 === 0 && isPathologicalArray(randomArray))
     ? createRandomizedArray(gridSize)
