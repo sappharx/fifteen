@@ -1,13 +1,13 @@
-import Immutable = require('immutable')
+import { List } from 'immutable'
 
 // QUESTION: do we want '0' to always be in the bottom right corner??
-export default function createGrid(gridSize: number): Immutable.List<number> {
+export default function createGrid(gridSize: number): List<number> {
   return createRandomizedArray(gridSize)
 }
 
-function createRandomizedArray(gridSize: number): Immutable.List<number> {
-  let availableNumbers: Immutable.List<number> = createBasicArray(gridSize)
-  let randomArray: Immutable.List<number> = Immutable.List<number>()
+function createRandomizedArray(gridSize: number): List<number> {
+  let availableNumbers: List<number> = createBasicArray(gridSize)
+  let randomArray: List<number> = List<number>()
 
   while (availableNumbers.size > 0) {
     const index: number = getRandomIntInclusive(0, availableNumbers.size - 1)
@@ -24,9 +24,9 @@ function createRandomizedArray(gridSize: number): Immutable.List<number> {
     : randomArray
 }
 
-function createBasicArray(size: number): Immutable.List<number> {
+function createBasicArray(size: number): List<number> {
   let numbersRemaining: number = size * size
-  let array: Immutable.List<number> = Immutable.List<number>()
+  let array: List<number> = List<number>()
 
   while (numbersRemaining > 1) {
     array = array.push(--numbersRemaining)
@@ -39,7 +39,7 @@ function getRandomIntInclusive(min: number, max: number): number {
   return min + Math.floor(Math.random() * (max - min + 1));
 }
 
-function isPathologicalArray(array: Immutable.List<number>): boolean {
+function isPathologicalArray(array: List<number>): boolean {
   for (let i: number = 0, j: number = array.size - 1; j > 0; ++i, --j) {
     if (array[i] !== j) {
       return false

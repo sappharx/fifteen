@@ -1,5 +1,7 @@
 import test, { ContextualTestContext } from 'ava'
 
+import { List } from 'immutable'
+
 import createGrid from './create-grid'
 
 test('#createGrid returns a length of n squared', (t: ContextualTestContext) => {
@@ -12,7 +14,7 @@ test('#createCrid returns an Array whose last element is 0', (t: ContextualTestC
 })
 
 test('#createCrid returns a Array free of duplicates', (t: ContextualTestContext) => {
-  const grid = createGrid(8)
-  const uniqueSet = new Set(grid.toArray())
+  const grid: List<number> = createGrid(8)
+  const uniqueSet: Set<number> = new Set(grid.toArray())
   t.is(uniqueSet.size, grid.size)
 })

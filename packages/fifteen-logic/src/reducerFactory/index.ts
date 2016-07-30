@@ -1,10 +1,10 @@
-import Immutable = require('immutable')
+import { List } from 'immutable'
 
 import createGrid from './create-grid'
 import { ActionTypes } from './ActionTypes'
 import { IAction } from './IAction'
 
-type Reducer = (state: Immutable.List<number>, action?: IAction) => Immutable.List<number>
+type Reducer = (state: List<number>, action?: IAction) => List<number>
 
 const MINIMUM_GRID_SIZE: number = 3
 const MAXIMUM_GRID_SIZE: number = 9
@@ -18,9 +18,9 @@ export default function reducerFactory(gridSize: number): Reducer {
     throw `requested gridSize is above the maximum ${MAXIMUM_GRID_SIZE}`
   }
 
-  const initialState: Immutable.List<number> = createGrid(gridSize)
+  const initialState: List<number> = createGrid(gridSize)
 
-  return (state: Immutable.List<number> = initialState, action?: IAction): Immutable.List<number> => {
+  return (state: List<number> = initialState, action?: IAction): List<number> => {
     switch (action.type) {
       case ActionTypes.MoveTile:
         return state
