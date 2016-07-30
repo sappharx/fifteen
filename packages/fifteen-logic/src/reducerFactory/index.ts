@@ -1,6 +1,7 @@
 import { List } from 'immutable'
 
 import createGrid from './create-grid'
+import moveTile from './moveTile'
 import { ActionTypes } from './ActionTypes'
 import { IAction } from './IAction'
 
@@ -21,9 +22,14 @@ export default function reducerFactory(gridSize: number): Reducer {
   const initialState: List<number> = createGrid(gridSize)
 
   return (state: List<number> = initialState, action?: IAction): List<number> => {
+    // hackery
+    if (!action) {
+      return state
+    }
+
     switch (action.type) {
       case ActionTypes.MoveTile:
-        return state
+        return moveTile(state, gridSize, action.value)
       default:
         return state
     }

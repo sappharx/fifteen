@@ -1,5 +1,6 @@
 import { ActionTypes } from './ActionTypes'
 
 export interface IAction {
-  type: ActionTypes
+  type: ActionTypes,
+  value: number
 }
