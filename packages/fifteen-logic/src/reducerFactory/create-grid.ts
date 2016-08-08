@@ -1,12 +1,16 @@
-import { List } from 'immutable'
+import { List, Range } from 'immutable'
 
-// QUESTION: do we want '0' to always be in the bottom right corner??
-export default function createGrid(gridSize: number): List<number> {
-  return createRandomizedArray(gridSize)
+import { Grid } from './grid'
+
+export default function createGrid(gridSize: number): Grid {
+  return {
+    board: createRandomizedArray(gridSize),
+    size: gridSize
+  }
 }
 
 function createRandomizedArray(gridSize: number): List<number> {
-  let availableNumbers: List<number> = createBasicArray(gridSize)
+  let availableNumbers: List<number> = List<number>(Range(1, gridSize ** 2))
   let randomArray: List<number> = List<number>()
 
   while (availableNumbers.size > 0) {
@@ -24,17 +28,6 @@ function createRandomizedArray(gridSize: number): List<number> {
     : randomArray
 }
 
-function createBasicArray(size: number): List<number> {
-  let numbersRemaining: number = size * size
-  let array: List<number> = List<number>()
-
-  while (numbersRemaining > 1) {
-    array = array.push(--numbersRemaining)
-  }
-
-  return array
-}
-
 function getRandomIntInclusive(min: number, max: number): number {
   return min + Math.floor(Math.random() * (max - min + 1));
 }
@@ -48,12 +41,3 @@ function isPathologicalArray(array: List<number>): boolean {
 
   return true
 }
-
-// FOR REFERENCE: split array into an array of arrays
-// let gridArray: Grid = []
-// for (let i: number = 0; i < gridSize; ++i) {
-//   const start: number = i * gridSize
-//   const end: number = (i + 1) * gridSize
-//   const array: Array<number> = randomArray.slice(start, end)
-//   gridArray = gridArray.concat([array])
-// }

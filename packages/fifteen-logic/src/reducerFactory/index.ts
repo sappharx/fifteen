@@ -1,27 +1,26 @@
-import { List } from 'immutable'
+import { Action, Reducer } from 'redux'
 
+import { Grid } from './grid'
+import MoveTileAction from './moveTileAction'
 import createGrid from './create-grid'
 import moveTile from './moveTile'
-import { ActionTypes } from './ActionTypes'
-import { IAction } from './IAction'
-
-type Reducer = (state: List<number>, action?: IAction) => List<number>
+import ActionTypes from './actionTypes'
 
 const MINIMUM_GRID_SIZE: number = 3
 const MAXIMUM_GRID_SIZE: number = 9
 
-export default function reducerFactory(gridSize: number): Reducer {
+export default function reducerFactory(gridSize: number): Reducer<Grid> {
   if (gridSize < MINIMUM_GRID_SIZE) {
-    throw `requested gridSize is below the minimum ${MINIMUM_GRID_SIZE}`
+    throw `requested gridSize is below the minimum ${ MINIMUM_GRID_SIZE }`
   }
 
   if (gridSize > MAXIMUM_GRID_SIZE) {
-    throw `requested gridSize is above the maximum ${MAXIMUM_GRID_SIZE}`
+    throw `requested gridSize is above the maximum ${ MAXIMUM_GRID_SIZE }`
   }
 
-  const initialState: List<number> = createGrid(gridSize)
+  const initialState: Grid = createGrid(gridSize)
 
-  return (state: List<number> = initialState, action?: IAction): List<number> => {
+  return (state: Grid = initialState, action: Action): Grid => {
     // hackery
     if (!action) {
       return state
@@ -29,7 +28,7 @@ export default function reducerFactory(gridSize: number): Reducer {
 
     switch (action.type) {
       case ActionTypes.MoveTile:
-        return moveTile(state, gridSize, action.value)
+        return moveTile(state, <MoveTileAction>action)
       default:
         return state
     }

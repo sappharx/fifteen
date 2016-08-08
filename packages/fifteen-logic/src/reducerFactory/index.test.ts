@@ -1,26 +1,25 @@
 import test, { ContextualTestContext } from 'ava'
 
-import { List } from 'immutable'
+import { Reducer } from 'redux'
 
-import createGrid from './create-grid'
-import moveTile from './moveTile'
-import { ActionTypes } from './ActionTypes'
-import { IAction } from './IAction'
+import { Grid } from './grid'
+import ActionCreator from './actionCreator'
+import MoveTileAction from './moveTileAction'
 
 import reducerFactory from './index'
-type Reducer = (state: List<number>, action?: IAction) => List<number>
 
 test('#reducerFactory move tile action', (t: ContextualTestContext) => {
-  const reducer: Reducer = reducerFactory(3)
-  // let grid: List<number> = createGrid(3)
+  const reducer: Reducer<Grid> = reducerFactory(3)
 
   // initialize state
-  let grid: List<number> = reducer()
+  let grid: Grid = reducer()
 
   // move tile
-  const tile: number = grid.get(7)
-  grid = reducer(grid, { type: ActionTypes.MoveTile, value: tile })
+  const tile: number = grid.board.get(7)
+  const action: MoveTileAction = ActionCreator.moveTile(tile)
 
-  t.is(grid.indexOf(0), 7)
-  t.is(grid.indexOf(tile), 8)
+  grid = reducer(grid, action)
+
+  t.is(grid.board.indexOf(0), 7)
+  t.is(grid.board.indexOf(tile), 8)
 })

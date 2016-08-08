@@ -1,3 +1,5 @@
-export enum ActionTypes {
+enum ActionTypes {
   MoveTile
 }
+
+export default ActionTypes
