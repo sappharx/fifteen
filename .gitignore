@@ -2,6 +2,7 @@ node_modules/
 dist/
 .alm/
 .nyc_output/
+.vscode
 
 *.map
 
